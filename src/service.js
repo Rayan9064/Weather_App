@@ -50,7 +50,7 @@ const formatWeather = (data) => {
    const {
       current: { 
          condition: { text, icon }, 
-         humidity, temp_c, temp_f, wind_dir, wind_kph
+         humidity, temp_c, temp_f, wind_dir, wind_kph, feelslike_c, feelslike_f
       },
       forecast: { forecastday },
       location: { name: city, region, country, tz_id, localtime_epoch: date_epoch },
@@ -87,8 +87,9 @@ const formatWeather = (data) => {
       return { hourlyForecast };
    });
 
-   console.log( {temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, city, region, country, date_epoch, tz_id, daily, hourly} );
-   return { temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, city, region, country, date_epoch, tz_id, daily, hourly };
+   // console.log(data);
+   // console.log( {temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, city, region, country, date_epoch, tz_id, daily, hourly} );
+   return { temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, feelslike_c, feelslike_f, city, region, country, date_epoch, tz_id, daily, hourly };
 }
 
 const getFormattedWeather = async (city) => {

@@ -26,7 +26,7 @@ export default function TopButtons({ setCity }) {
   return (
   <div className='flex flex-row items-center justify-around my-4'>
       {cities.map((city) => (
-        <button key={city.id} onClick={() => setCity(city.name)} className='text-lg font-medium text-white'>{city.name}</button>
+        <button key={city.id} onClick={() => setCity(city.name)} className='max-sm:text-xs font-medium md:text-xl text-white'>{city.name}</button>
       ))}
     </div>
   );

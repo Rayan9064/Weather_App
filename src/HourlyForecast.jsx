@@ -6,7 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 
-export default function HourlyForecast({ weather: { daily, hourly, tz_id }, setUnit, unit }) {
+export default function HourlyForecast({ weather: { temp_c, daily, hourly, tz_id }, setUnit, unit }) {
 
     const day1 = formatToLocalTime(daily[0].date_epoch, tz_id, "cccc");
     const day2 = formatToLocalTime(daily[1].date_epoch, tz_id, "cccc");
@@ -22,8 +22,8 @@ export default function HourlyForecast({ weather: { daily, hourly, tz_id }, setU
 
     return (
         <>
-            <div className={`mx-auto text-white max-w-screen-md px-32 py-5 bg-gradient-to-br ${(weather.temp_c<30)?'from-cyan-700 to-blue-700':'from-orange-600 to-orange-700'} shadow-xl h-fit shadow-gray-400`}>
-                <p className=' text-center font-semibold text-2xl '>Hourly Forecast</p>
+            <div className={`mx-auto text-white lg:max-w-screen-md w-full sm:px-2 max-md:px-6 md:px-32 max-sm:py-1 py-5 bg-gradient-to-br ${(temp_c<30)?'from-cyan-700 to-blue-700':'from-orange-600 to-orange-700'} shadow-xl h-fit shadow-gray-400`}>
+                <p className=' text-center font-semibold max-md:text-lg md:text-2xl '>Hourly Forecast</p>
                 <hr className='my-4 text-white' />
                 <Tabs>
                 <TabList className='flex justify-around items-center my-2 border-b-2 border-b-white'>
@@ -32,7 +32,14 @@ export default function HourlyForecast({ weather: { daily, hourly, tz_id }, setU
                     <Tab>{day3}</Tab>
                 </TabList>
                     <TabPanel>
-                        <p className=' font-medium text-xl pl-2'>Hourly Forecast for <span className=' text-cyan-500'>{`${day1}`}</span > &nbsp;<button className=' font-thin' onClick={handleCelcius}> C</button> <span className=' font-thin'>|</span> <button className=' font-thin' onClick={handleFahrenheit}> F</button></p>
+                        <div className=' flex'>
+                        <p className='font-medium md:text-xl pl-2'>Hourly Forecast for <span className=' text-cyan-500'>{`${day1}`}</span ></p>
+                        <div className=' ml-2 px-2 rounded-md border-transparent border flex justify-center items-center'>
+                        <button className=' font-thin' onClick={handleCelcius}> °C</button>
+                        <span className=' font-thin mx-1'>|</span> 
+                        <button className=' font-thin' onClick={handleFahrenheit}> °F</button>
+                        </div>
+                        </div>
                         <div className='flex flex-row flex-wrap justify-around items-center text-white'>
                             {hourly[0].hourlyForecast.map((h) => (
                                 <div className=' flex flex-col items-center justify-center m-2' key={uuidv4()}>

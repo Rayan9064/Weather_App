@@ -6,10 +6,10 @@ export default function TimeAndLocation({ weather: {city, region, country, tz_id
   return (
     <div>
         <div className='flex flex-row justify-center items-center my-4'>
-            <p className=' text-lg text-white font-extralight'>{`${dateAndTime}`}</p>
+            <p className=' md:text-lg text-white font-extralight'>{`${dateAndTime}`}</p>
         </div>
-        <div className='flex flex-row justify-center items-center my-4'>
-            <p className=' text-3xl text-white font-semibold'>{`${(region===undefined)?`${city}, ${country}`:`${city}, ${region}, ${country}`}`}</p>
+        <div className='flex flex-row justify-center items-center my-2'>
+            <p className=' max-sm:text-xl md:text-3xl text-white font-semibold'>{`${(region===undefined)?`${city}, ${country}`:`${city}, ${region}, ${country}`}`}</p>
         </div>
     </div>
   )
