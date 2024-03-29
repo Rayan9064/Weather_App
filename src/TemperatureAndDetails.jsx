@@ -1,7 +1,6 @@
 import React from "react";
-import cloud from "./assets/cloud.png";
 
-export default function TemperatureAndDetails({ weather: { temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, daily }}) {
+export default function TemperatureAndDetails({ weather: { temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, daily }, unit}) {
   return (
     <div>
       <div className="flex flex-row justify-center items-center my-2">
@@ -12,7 +11,7 @@ export default function TemperatureAndDetails({ weather: { temp_c, temp_f, text,
           <img src={icon} />
         </div>
         <div>
-          <p className=" text-white font-light text-5xl ml-12" id="Temp">{`${temp_c}`}°</p>
+          <p className=" text-white font-light text-5xl ml-12" id="Temp">{`${(unit==='c')?temp_c:temp_f}`}°</p>
         </div>
         <div className="flex flex-col mx-2">
             <div>

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import Search from './Search';
-import TemperatureAndDetails from './TemperatureAndDetails';
-import TimeAndLocation from './TimeAndLocation';
-import TopButtons from './TopButtons';
 import { getFormattedWeather } from './service';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import DailyForecast from './DailyForecast';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import Weather from './Weather';
+import HourlyForecast from './HourlyForecast';
 
 function App() {
   const [city, setCity] = useState('Delhi');
@@ -26,19 +28,14 @@ function App() {
 
   return (
     <>
-    <div className='mx-auto max-w-screen-md px-32 py-5 bg-gradient-to-br from-cyan-700 to-blue-700 shadow-xl h-fit shadow-gray-400'>
-      {weather && <TopButtons setCity={setCity}/>}
-      {weather &&  
-      <div>
-      <Search setCity={setCity}/>
-      <TimeAndLocation weather={weather}/>
-      <TemperatureAndDetails weather={weather}/>
-      <DailyForecast weather={weather}/>
-      </div>
-      }
+    <Router>
+      <Routes>
+        <Route exact path='/' element={ weather && <Weather weather={weather} setCity={setCity} />}/>
+        <Route exact path='/hourly' element={weather && <HourlyForecast weather={weather} />}/>
+      </Routes>
 
       <ToastContainer autoClose={2000} theme='colored' newestOnTop={true}/>
-      </div>
+    </Router>
     </> 
   )
 }

@@ -81,10 +81,10 @@ const formatWeather = (data) => {
 
    const hourly = daily.map((d) => {
       const {
-         hourlyForecast: hourly,
+         hourlyForecast,
       } = d;
 
-      return { hourly };
+      return { hourlyForecast };
    });
 
    console.log( {temp_c, temp_f, text, icon, humidity, wind_dir, wind_kph, city, region, country, date_epoch, tz_id, daily, hourly} );
