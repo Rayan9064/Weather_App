@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import search from './assets/search.png';
 import location from './assets/location.png';
 import { geoToCity } from './service';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Search({ setCity, unit, setUnit }) {
     const [place, setPlace] = useState("");
@@ -18,21 +16,11 @@ export default function Search({ setCity, unit, setUnit }) {
     }
 
     const handleCelcius = () => {
-      if(unit==='u') {
-        setUnit('c');
-        toast.success('Successfully setted degree to Celcius');
-      } else {
-        toast.info('Degree is already on celcius');
-      }
+      if(unit==='Fahrenheit') setUnit('Celcius'); 
     };
 
     const handleFahrenheit = () => {
-      if(unit==='c') {
-        setUnit('u');
-        toast.success('Successfully setted degree to Fahrenheit');
-      } else {
-        toast.info('Degree is already on Fahrenheit');
-      }
+      if(unit==='Celcius') setUnit('Fahrenheit');
     };
 
   return (
@@ -43,8 +31,6 @@ export default function Search({ setCity, unit, setUnit }) {
         <button className=' text-lg text-white mx-1 font-extralight' onClick={handleCelcius}>°C</button>
         <p className=' text-lg text-white mx-1 font-extralight'>|</p>
         <button className=' text-lg text-white mx-1 font-extralight' onClick={handleFahrenheit}>°F</button>
-        
-      <ToastContainer autoClose={2000} theme='colored' newestOnTop={true}/>
     </div>
   )
 }

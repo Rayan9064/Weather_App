@@ -11,7 +11,7 @@ export default function TemperatureAndDetails({ weather: { temp_c, temp_f, text,
           <img src={icon} />
         </div>
         <div>
-          <p className=" text-white font-light text-5xl ml-12" id="Temp">{`${(unit==='c')?temp_c:temp_f}`}°</p>
+          <p className=" text-white font-light text-5xl ml-12" id="Temp">{`${(unit==='Celcius')?temp_c:temp_f}`}°</p>
         </div>
         <div className="flex flex-col mx-2">
             <div>

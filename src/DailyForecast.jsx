@@ -15,7 +15,7 @@ export default function DailyForecast({weather: { tz_id, daily }, unit }) {
             <p className=' text-white'>{`${formatToLocalTime(d.date_epoch, tz_id, "cccc")}`}</p>
             <img src={d.icon}/>
             <p className='text-white'>{`${d.text}`}</p>
-            <p className='text-white'>{`${(unit==='c')?d.maxtemp_c:d.maxtemp_f}`}°</p>
+            <p className='text-white'>{`${(unit==='Celcius')?d.maxtemp_c:d.maxtemp_f}`}°</p>
           </div>
         ))}
         

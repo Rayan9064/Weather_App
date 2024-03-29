@@ -13,6 +13,7 @@ import HourlyForecast from './HourlyForecast';
 function App() {
   const [city, setCity] = useState('Delhi');
   const [weather, setWeather] = useState(null);
+  const [ unit, setUnit ] = useState('Celcius');
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -26,12 +27,16 @@ function App() {
     fetchWeather();
   }, [city]);
 
+  useEffect(() => {
+    toast.success('Degree set to ' + unit);
+  }, [unit]);
+
   return (
     <>
     <Router>
       <Routes>
-        <Route exact path='/' element={ weather && <Weather weather={weather} setCity={setCity} />}/>
-        <Route exact path='/hourly' element={weather && <HourlyForecast weather={weather} />}/>
+        <Route exact path='/' element={ weather && <Weather weather={weather} setCity={setCity} unit={unit} setUnit={setUnit} />}/>
+        <Route exact path='/hourly' element={weather && <HourlyForecast weather={weather} setUnit={setUnit} unit={unit}/>}/>
       </Routes>
 
       <ToastContainer autoClose={2000} theme='colored' newestOnTop={true}/>
