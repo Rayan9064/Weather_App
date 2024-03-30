@@ -9,37 +9,42 @@ const options = {
 	}
 };
 
-var requestOptions = {
-   method: 'GET',
- };
+const requestOptions = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': import.meta.env.VITE_REVERSE_GEO,
+		'X-RapidAPI-Host': import.meta.env.VITE_GEO_HOST
+	}
+};
 
 const getWeather = async (city) => {
-    // cityName.innerHTML = city;
 	return await fetch(url + city + '&days=3', options)
    .then(res => res.json());
 }
 
-const getCity = (lat, lon) => {  
-   fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${import.meta.env.VITE_REVERSE_GEO}`, requestOptions)
-   .then(response => response.json());
+const getCity = async (lat, lon) => {  
+   return await fetch(`https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${lat}%2C${lon}&language=en`, requestOptions)
+   .then(response => response.json())
 }
 
-const City = (data) => {
+const getLocality = (data) => {
    const {
-      features: { city, country }
+      results
    } = data;
 
-   console.log(city, country);
-   return { city, country };
-}
+   const city = results[0].locality;
 
-const geoToCity = () => {
+   return city;
+};
+
+const geoToCity =  (setCity) => {
    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition( async (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        console.log(`Latitude: ${lat}, Longitude: ${lon}`);
-        getCity(lat, lon)
+      //   console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+        const city = await getCity(lat, lon).then(getLocality);
+        setCity(city);
       });
     } else {
       console.log("Geolocation is not supported by this browser.");
