@@ -24,7 +24,7 @@ export default function HourlyForecast({ weather: { temp_c, daily, hourly, tz_id
         <>
             <div className={`mx-auto text-white lg:max-w-screen-md w-full sm:px-2 max-md:px-6 md:px-32 max-sm:py-1 py-5 bg-gradient-to-br ${(temp_c<30)?'from-cyan-700 to-blue-700':'from-orange-600 to-orange-700'} shadow-xl h-fit shadow-gray-400`}>
                 <p className=' text-center font-semibold max-md:text-lg md:text-2xl '>Hourly Forecast</p>
-                <hr className='my-4 text-white' />
+                <hr className=' mt-1 mb-3 text-white' />
                 <Tabs>
                 <TabList className='flex justify-around items-center my-2 border-b-2 border-b-white'>
                     <Tab>{day1}</Tab>

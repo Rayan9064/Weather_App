@@ -7,7 +7,7 @@ export default function DailyForecast({weather: { tz_id, daily }, unit }) {
 
   return (
     <div>
-      <h2 className='text-white font-medium'>Daily Forecast</h2>
+      <h2 className='text-white font-medium text-center'>Daily Forecast</h2>
       <hr className='my-2'/>
       <div className='flex flex-row items-center justify-around my-5'>
         {daily.map((d) => (
